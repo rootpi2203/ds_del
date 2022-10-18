@@ -12,8 +12,8 @@ die pipenv ohne pytorch zu installieren und torch+cuda separate zu installieren:
 - aktiviere pipenv `pipenv shell`, verlasse die shell `exit`
 - installiere torch+cuda `pipenv install --extra-index-url https://download.pytorch.org/whl/ "torch==1.10.1+cu102"` [forum](https://github.com/pypa/pipenv/issues/4961)
 
-Die Fehlermeldung / Warnung erscheint zwar immer noch, aber die Installation ist durch und das `pytorch_gpu_tests` zeigt die GPU
-als TRUE an.
+Die Fehlermeldung / Warnung erscheint zwar immer noch, aber die Installation ist durch und das `pytorch_gpu_tests` file zeigt dass 
+die GPU gefunden wird mit Cuda==TRUE.
 
 **Fehlermeldung / Warnung**  
 [pipenv.exceptions.ResolutionFailure]: Warning: Your dependencies could not be resolved. You likely have a mismatch in your sub-dependencies.
