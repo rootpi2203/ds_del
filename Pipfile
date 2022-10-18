@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://download.pytorch.org/whl/"
+verify_ssl = true
+name = "downloadpytorch"
+
+[packages]
+pandas = "*"
+numpy = "*"
+sklearn = "*"
+matplotlib = "*"
+plotly = "*"
+plotly-express = "*"
+jupyter = "*"
+pandas-profiling = "*"
+torch = "==1.10.1+cu102"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
