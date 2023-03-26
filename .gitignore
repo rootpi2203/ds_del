@@ -119,3 +119,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .vscode/settings.json
+11_MCH1/wandb
+81_test_files/wandb
