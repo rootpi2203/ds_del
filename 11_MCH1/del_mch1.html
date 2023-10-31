@@ -16950,7 +16950,7 @@ $$Output\ Grösse = \frac{Input\ Grösse + (2 \cdot padding - Kernel\ Grösse)}{
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
     <span class="c1"># for lr in [1e-1, 1e-2, 1e-3, 1e-4, 1e-5]: </span>
@@ -16959,8 +16959,8 @@ $$Output\ Grösse = \frac{Input\ Grösse + (2 \cdot padding - Kernel\ Grösse)}{
     <span class="c1"># for bt_size in [8, 16, 32, 64]:</span>
     <span class="c1"># for kernel_size in [3, 5, 7]:</span>
     <span class="c1"># for stride in [1, 2, 3]:</span>
-    <span class="k">for</span> <span class="n">padding</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>  <span class="c1"># [0, 1, 2]</span>
-    <span class="c1"># for seed in [12, 16, 42, 64, 71]:</span>
+    <span class="c1"># for padding in [0, 1, 2]:  </span>
+    <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">71</span><span class="p">]:</span>
         <span class="c1"># Hyperparameters  </span>
         <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"CNN-simple"</span><span class="p">,</span> 
@@ -16987,7 +16987,7 @@ $$Output\ Grösse = \frac{Input\ Grösse + (2 \cdot padding - Kernel\ Grösse)}{
             <span class="s2">"filter_sizes"</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span>
             <span class="s2">"dense_layers"</span><span class="p">:</span> <span class="p">[</span><span class="mi">512</span><span class="p">],</span>
             <span class="s2">"kernel_sizes"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-            <span class="s2">"padding"</span><span class="p">:</span> <span class="n">padding</span><span class="p">,</span>
+            <span class="s2">"padding"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
             <span class="s2">"stride"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
             <span class="s2">"pool_sizes"</span><span class="p">:</span> <span class="p">[],</span>
             <span class="s2">"dropout"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -16995,7 +16995,7 @@ $$Output\ Grösse = \frac{Input\ Grösse + (2 \cdot padding - Kernel\ Grösse)}{
             <span class="s2">"norm_std"</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
             <span class="s2">"num_classes"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
             <span class="s2">"save_eval_image"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s2">"set_seed"</span><span class="p">:</span> <span class="mi">42</span>  <span class="c1"># [12, 16, 42, 64, 71]</span>
+            <span class="s2">"set_seed"</span><span class="p">:</span> <span class="n">seed</span>  <span class="c1"># [12, 16, 42, 64, 71]</span>
         <span class="p">}</span>
 
         <span class="c1"># create model</span>
@@ -17010,27 +17010,11 @@ $$Output\ Grösse = \frac{Input\ Grösse + (2 \cdot padding - Kernel\ Grösse)}{
             <span class="p">)</span>
 
         <span class="n">cv_train_acc_mean</span><span class="p">,</span> <span class="n">cv_test_acc_mean</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model_trainer</span><span class="p">(</span><span class="n">cnn_simple</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
-                        <span class="n">group</span><span class="o">=</span><span class="sa">f</span><span class="s1">'CNN_simple_padding</span><span class="si">{</span><span class="n">padding</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="c1"># _5f_cv, _seed_val, _hl_size{}, _lr{}</span>
-                        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'CNN'</span><span class="p">,</span> <span class="s1">'padding'</span><span class="p">],</span> <span class="c1"># 5fold cv, seed val, lr</span>
+                        <span class="n">group</span><span class="o">=</span><span class="sa">f</span><span class="s1">'CNN_simple_seed_val'</span><span class="p">,</span> <span class="c1"># _5f_cv, _seed_val, _hl_size{}, _lr{}</span>
+                        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'CNN'</span><span class="p">,</span> <span class="s1">'seed val'</span><span class="p">],</span> <span class="c1"># 5fold cv, seed val, lr</span>
                         <span class="n">print_info</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_eval</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sound</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                         <span class="n">write_wandb</span><span class="o">=</span><span class="kc">True</span>
                         <span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
@@ -17117,26 +17101,26 @@ Für die optimierten Parameter soll das Modell mit 5Fold-Cross-Validation und mi
 </thead>
 <tbody>
 <tr>
-<td>CNN-simple-5f-cv (xx)</td>
+<td>CNN-simple-5f-cv</td>
 <td>1e-2</td>
 <td>32</td>
 <td>64</td>
 <td>32</td>
-<td>3,1,xx</td>
-<td>0.x</td>
-<td>0.x</td>
-<td>0.x</td>
+<td>3,1,2</td>
+<td>0.9671</td>
+<td>0.8978</td>
+<td>0.139</td>
 </tr>
 <tr>
-<td>CNN-simple-seeds (xx)</td>
+<td>CNN-simple-seeds</td>
 <td>1e-2</td>
 <td>32</td>
 <td>64</td>
 <td>32</td>
-<td>3,1,xx</td>
-<td>0.x</td>
-<td>0.x</td>
-<td>0.x</td>
+<td>3,1,2</td>
+<td>0.8453</td>
+<td>0.6900</td>
+<td>0.009</td>
 </tr>
 </tbody>
 </table>
@@ -17145,22 +17129,6 @@ Für die optimierten Parameter soll das Modell mit 5Fold-Cross-Validation und mi
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -17237,7 +17205,6 @@ Beschreibung warum
 <th>Dropout</th>
 <th>Train Acc</th>
 <th>Test Acc</th>
-<th>Test Schätzfehler</th>
 </tr>
 </thead>
 <tbody>
@@ -17248,7 +17215,6 @@ Beschreibung warum
 <td>0</td>
 <td>xx</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 <tr>
 <td>2</td>
@@ -17257,7 +17223,6 @@ Beschreibung warum
 <td>0</td>
 <td>x</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 <tr>
 <td>3</td>
@@ -17266,7 +17231,6 @@ Beschreibung warum
 <td>0</td>
 <td>xx</td>
 <td>x</td>
-<td>--</td>
 </tr>
 <tr>
 <td>4</td>
@@ -17275,7 +17239,6 @@ Beschreibung warum
 <td>0.2, 0.3, 0.4, 0.5</td>
 <td>xx</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 </tbody>
 </table>
@@ -17380,7 +17343,6 @@ Beschreibung warum
 <th>Dropout</th>
 <th>Train Acc</th>
 <th>Test Acc</th>
-<th>Test Schätzfehler</th>
 </tr>
 </thead>
 <tbody>
@@ -17400,31 +17362,25 @@ Beschreibung warum
 <td>0</td>
 <td>x</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 <tr>
 <td>3</td>
-<td>xx**</td>
+<td>0</td>
 <td>1e-5, 1e-4, 1e-3, 1e-2</td>
 <td>0</td>
 <td>xx</td>
-<td>x</td>
-<td>--</td>
+<td>xx</td>
 </tr>
 <tr>
 <td>4</td>
-<td>xx**</td>
-<td>xx**</td>
+<td>0</td>
+<td>0</td>
 <td>0.2, 0.3, 0.4, 0.5</td>
 <td>xx</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 </tbody>
 </table>
-<p>Info:<br>
-*: gewählter Startwert<br>
-** : optimaler Wert</p>
 <hr>
 
 </div>
@@ -17477,7 +17433,7 @@ Beschreibung warum
 
 **Unterschiedliche L2-Weight Decay Werte**
 
-**Unterschiedliche Dropout**
+**Unterschiedliche Dropout Wahrscheinlichkeit**
 
 
 </div>
@@ -17552,7 +17508,6 @@ Beschreibung warum
 <th>Batchnorm</th>
 <th>Train Acc</th>
 <th>Test Acc</th>
-<th>Test Schätzfehler</th>
 </tr>
 </thead>
 <tbody>
@@ -17561,34 +17516,27 @@ Beschreibung warum
 <td>Aus</td>
 <td>xx</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 <tr>
 <td>MLP-h2l</td>
 <td>Ein</td>
 <td>x</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 <tr>
 <td>CNN-simple</td>
 <td>Aus</td>
 <td>xx</td>
 <td>x</td>
-<td>--</td>
 </tr>
 <tr>
 <td>CNN-simple</td>
 <td>Ein</td>
 <td>xx</td>
 <td>xx</td>
-<td>--</td>
 </tr>
 </tbody>
 </table>
-<p>Info:<br>
-*: gewählter Startwert<br>
-** : optimaler Wert</p>
 <hr>
 
 </div>
@@ -17631,8 +17579,8 @@ Beschreibung warum
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="alert alert-block alert-success">
 
-**Nutzen von Batchnorm für MLP und CNN** (ohne REG, mit SGD)
-
+**Nutzen von Batchnorm für MLP und CNN** (ohne REG, mit SGD)  
+Beschreibung
 </div>
 </div>
 </div>
@@ -17749,9 +17697,6 @@ Beschreibung warum
 </tr>
 </tbody>
 </table>
-<p>Info:<br>
-*: gewählter Startwert<br>
-** : optimaler Wert</p>
 <hr>
 
 </div>
@@ -17780,7 +17725,10 @@ Beschreibung warum
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Verwendung von Adam für MLP und CNN</strong></p>
+<p><strong>Verwendung von Adam für MLP</strong></p>
+<!-- <img src="../01_Dokumentation/wandb_images/MLP_hl2_lr.PNG" width="800" height="400"> -->
+
+<p><strong>Verwendung von Adam für CNN</strong></p>
 <!-- <img src="../01_Dokumentation/wandb_images/MLP_hl2_lr.PNG" width="800" height="400"> -->
 </div>
 </div>
@@ -17796,6 +17744,7 @@ Beschreibung warum
 
 **Nutzen von Adam MLP und CNN** (ohne REG, mit SGD)
 
+Beschreibung
 </div>
 </div>
 </div>
