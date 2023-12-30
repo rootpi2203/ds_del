@@ -122,3 +122,5 @@ dmypy.json
 11_MCH1/wandb
 81_test_files/wandb
 11_MCH1/plots/eval_model_plots
+21_MCH2/models
+21_MCH2/wandb
